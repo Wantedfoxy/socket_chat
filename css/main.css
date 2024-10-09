@@ -1,0 +1,53 @@
+* {
+    box-sizing: border-box;
+}
+
+body {
+    font-size: 14px;
+}
+
+.container {
+    width: 800px; /* Задаем ширину */
+    margin: 0 auto; /* Центрирование по горизонтали */
+    text-align: center;
+}
+
+.login-header {
+    color: rgba(0, 0, 0, 1);
+    position: relative;
+    text-align: center;
+    font-family: Inter, sans-serif;
+    font-weight: normal;
+    font-size: 96px;
+    opacity: 1;
+}
+
+input {
+    width: 480px;
+    height: 62px;
+    opacity: 1;
+    position: relative;
+    font-size: 32px;
+    padding: 20px;
+    border: 2px solid rgba(0, 173, 239, 1);
+    border-radius: 60px;
+    overflow: hidden;
+    margin: 20px;
+}
+
+input:focus {
+    border-color: #00437A; /* Цвет границы при фокусе */
+    border-width: 2px;
+    outline: none; /* Отключаем стандартное обведение браузера */
+}
+
+.login-btn {
+    position: relative;
+    width: 300px;
+    height: 70px;
+    border-radius: 60px;
+    background-color: #00437A;
+    color: white;
+    font-size: 32px;
+    border-width: 0;
+}
