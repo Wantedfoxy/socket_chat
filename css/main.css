@@ -331,10 +331,31 @@ li {
 }
 
 .group-mailing-text {
+    vertical-align: top;
     border-radius: 20px;
     margin-top: 25px;
     height: 150px;
+    padding-top: 0;
 }
+
 .group-mailing-submit {
     margin-top: 25px;
+}
+
+textarea {
+    border: 2px solid rgba(0, 173, 239, 1);
+    border-radius: 60px;
+    font-size: 32px;
+    height: 62px;
+    opacity: 1;
+    overflow: hidden;
+    padding: 20px;
+    position: relative;
+    width: 480px;
+}
+
+textarea:focus {
+    border-color: #00437A; /* Цвет границы при фокусе */
+    border-width: 2px;
+    outline: none; /* Отключаем стандартное обведение браузера */
 }
