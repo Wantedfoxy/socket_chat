@@ -108,5 +108,44 @@
 <script src="scripts/chat-list.js"></script>
 <script src="scripts/send-message.js"></script>
 <script src="scripts/popup.js"></script>
+<script>
+    const atoken = 'username123'; // Замените на любой atoken
+
+    // Функция для отправки тестового запроса с использованием Request API
+    function testChatListRequest() {
+        const url = `http://localhost:8080/v1/chat/list/?atoken=${atoken}`;
+
+        // Создаем объект запроса с необходимыми параметрами
+        const request = new Request(url, {
+            method: 'GET', // Метод запроса
+            headers: new Headers({
+                'Content-Type': 'application/json' // Заголовки, если нужны
+            }),
+            mode: 'cors' // Используем CORS для запросов между доменами (если требуется)
+        });
+
+        // Выполняем запрос
+        fetch(request)
+            .then(response => {
+                // Проверка статуса ответа
+                if (!response.ok) {
+                    throw new Error(`Ошибка: ${response.status}`);
+                }
+                return response.json(); // Попытка распарсить JSON
+            })
+            .then(data => {
+                console.log('Данные, полученные от сервера:', data); // Выводим данные в консоль
+            })
+            .catch(error => {
+                console.error('Ошибка при получении данных:', error);
+            });
+
+    }
+
+    // Запускаем тестовый запрос при загрузке страницы
+    document.addEventListener('DOMContentLoaded', () => {
+        testChatListRequest();
+    });
+</script>
 </body>
 </html>
