@@ -1,12 +1,16 @@
 document.addEventListener('DOMContentLoaded', function() {
-    const items = document.querySelectorAll('.chat-list .item');
+    const chatList = document.querySelector('.chat-list');
 
-    items.forEach(item => {
-        item.addEventListener('click', function() {
-            // Удаляем класс 'active' у всех элементов
-            items.forEach(i => i.classList.remove('active'));
-            // Добавляем класс 'active' к текущему элементу
-            this.classList.add('active');
-        });
+    // Делегирование событий
+    chatList.addEventListener('click', function(event) {
+        const clickedItem = event.target.closest('.item');
+        if (!clickedItem) return; // Клик был не по элементу .item
+
+        // Удаляем класс 'active' у всех элементов
+        const items = chatList.querySelectorAll('.item');
+        items.forEach(item => item.classList.remove('active'));
+
+        // Добавляем класс 'active' к текущему элементу
+        clickedItem.classList.add('active');
     });
 });

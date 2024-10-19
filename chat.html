@@ -1,12 +1,16 @@
 <!DOCTYPE html>
-<html>
+<html lang="ru">
 <head>
-    <meta charset="UTF-8"name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="UTF-8" name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="https://fonts.googleapis.com/css?family=Inter&display=swap" rel="stylesheet"/>
     <link href="./css/main.css" rel="stylesheet"/>
     <title>Чат</title></head>
 <body>
+<div class="context-menu" id="context-menu">
+    <button id="short-response-btn">Требуется короткий ответ</button>
+    <button id="full-response-btn">Требуется полный ответ</button>
+</div>
 <div class="chat-container">
     <div class="top-line">
         <div class="search-tab">
@@ -22,61 +26,12 @@
     </div>
     <div class="mid-line">
         <div class="chat-list">
-            <ul>
-                <li class="item">
-                    <span class="item-chat-name">Петров П.П. 932428</span>
-                    <div class="item-chat-pointer"></div>
-                </li>
-                <li class="item active">
-                    <span class="item-chat-name">Смирнова А.С. 932428</span>
-                    <div class="item-chat-pointer"></div>
-                </li>
-                <li class="item">
-                    <span class="item-chat-name">Иванов И. И. 932428</span>
-                    <div class="item-chat-pointer"></div>
-                </li>
-                <li class="item">
-                    <span class="item-chat-name">Иванов И. И. 932428</span>
-                    <div class="item-chat-pointer"></div>
-                </li>
-                <li class="item">
-                    <span class="item-chat-name">Иванов И. И. 932428</span>
-                    <div class="item-chat-pointer"></div>
-                </li>
-                <li class="item">
-                    <span class="item-chat-name">Иванов И. И. 932428</span>
-                    <div class="item-chat-pointer"></div>
-                </li>
-                <li class="item">
-                    <span class="item-chat-name">Иванов И. И. 932428</span>
-                    <div class="item-chat-pointer"></div>
-                </li>
-                <li class="item">
-                    <span class="item-chat-name">Иванов И. И. 932428</span>
-                    <div class="item-chat-pointer"></div>
-                </li>
-                <li class="item">
-                    <span class="item-chat-name">Иванов И. И. 932428</span>
-                    <div class="item-chat-pointer"></div>
-                </li>
-                <li class="item">
-                    <span class="item-chat-name">Иванов И. И. 932428</span>
-                    <div class="item-chat-pointer"></div>
-                </li>
-                <li class="item">
-                    <span class="item-chat-name">Иванов И. И. 932428</span>
-                    <div class="item-chat-pointer"></div>
-                </li>
-            </ul>
+            <ul></ul>
         </div>
         <div class="chat-box">
             <ul>
                 <li>
-                    <div class="message-box">
-                        <span class="sender-name">Петров П.П. 932428</span>
-                        <span class="message-text">Текст сообщения</span>
-                        <span class="send-message-time">12:37</span>
-                    </div>
+                    <div class="message-box"></div>
                 </li>
             </ul>
         </div>
@@ -108,44 +63,7 @@
 <script src="scripts/chat-list.js"></script>
 <script src="scripts/send-message.js"></script>
 <script src="scripts/popup.js"></script>
-<script>
-    const atoken = 'username123'; // Замените на любой atoken
-
-    // Функция для отправки тестового запроса с использованием Request API
-    function testChatListRequest() {
-        const url = `http://localhost:8080/v1/chat/list/?atoken=${atoken}`;
-
-        // Создаем объект запроса с необходимыми параметрами
-        const request = new Request(url, {
-            method: 'GET', // Метод запроса
-            headers: new Headers({
-                'Content-Type': 'application/json' // Заголовки, если нужны
-            }),
-            mode: 'cors' // Используем CORS для запросов между доменами (если требуется)
-        });
-
-        // Выполняем запрос
-        fetch(request)
-            .then(response => {
-                // Проверка статуса ответа
-                if (!response.ok) {
-                    throw new Error(`Ошибка: ${response.status}`);
-                }
-                return response.json(); // Попытка распарсить JSON
-            })
-            .then(data => {
-                console.log('Данные, полученные от сервера:', data); // Выводим данные в консоль
-            })
-            .catch(error => {
-                console.error('Ошибка при получении данных:', error);
-            });
-
-    }
-
-    // Запускаем тестовый запрос при загрузке страницы
-    document.addEventListener('DOMContentLoaded', () => {
-        testChatListRequest();
-    });
-</script>
+<script src="scripts/chat-list-search.js"></script>
+<script src="scripts/chat-list-update.js"></script>
 </body>
 </html>
