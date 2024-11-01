@@ -72,7 +72,7 @@ async function connectWebSocket() {
         });
     });
 
-    // Функция для обработки сообщений через WebSocket с использованием async/await
+    // Функция для обработки сообщений через WebSocket
     socket.addEventListener('message', async function (event) {
         try {
             console.log('Получены данные через WebSocket:', event.data);
@@ -80,10 +80,14 @@ async function connectWebSocket() {
 
             const chatName = chat.account1 === atoken ? chat.account2 : chat.account1;
 
-            const existingChat = chatData.find(c => c.id === chat.id);
+            // Проверяем, есть ли уже такой чат в chatData
+            const existingChat = chatData.find(c => c.name === chatName);
+
             if (existingChat) {
+                // Если чат существует, обновляем только время последнего сообщения
                 existingChat.lastMessageTimestamp = chat.lastMessageTimestamp;
             } else {
+                // Если чата нет, добавляем новый объект в chatData
                 chatData.push({
                     name: chatName,
                     id: chat.id,
@@ -91,11 +95,13 @@ async function connectWebSocket() {
                 });
             }
 
+            // Обновляем список чатов
             updateChatList(chatData);
         } catch (error) {
             console.error('Ошибка при обработке данных WebSocket:', error);
         }
     });
+
 
     // Обработка закрытия соединения
     socket.addEventListener('close', function () {
@@ -104,7 +110,7 @@ async function connectWebSocket() {
     });
 }
 
-// Запускаем тестовый запрос и WebSocket при загрузке страницы
+// Запускаем изначальный запрос и WebSocket при загрузке страницы
 document.addEventListener('DOMContentLoaded', async () => {
     await getChatListService(); // Изначальный GET-запрос
     await connectWebSocket(); // Подключение к WebSocket
