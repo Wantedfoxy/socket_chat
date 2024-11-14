@@ -1,5 +1,3 @@
-const atoken = 'username1'; // Текущий пользователь
-
 // Функция для отправки запроса с использованием Request API
 async function getChatListService() {
     const url = `http://localhost:8080/v1/chat/list/?atoken=${atoken}`;
@@ -37,6 +35,7 @@ function updateChatList(chats) {
     chats.forEach(chat => {
         const li = document.createElement('li');
         li.classList.add('item');
+        li.setAttribute('data-chat-id', chat.id); // Сохраняем ID в data-атрибуте
 
         const chatName = chat.name ? chat.name : 'Неизвестный пользователь';
 
@@ -49,9 +48,12 @@ function updateChatList(chats) {
 
         li.appendChild(span);
         li.appendChild(pointerDiv);
-
         chatList.appendChild(li);
     });
+
+    // Перезапускаем поиск после добавления новых чатов
+    const searchInput = document.querySelector('.search-input');
+    searchInput.dispatchEvent(new Event('input')); // Инициируем событие input вручную для обновления поиска
 }
 
 // Функция для подключения к WebSocket с использованием async/await
@@ -81,7 +83,7 @@ async function connectWebSocket() {
             const chatName = chat.account1 === atoken ? chat.account2 : chat.account1;
 
             // Проверяем, есть ли уже такой чат в chatData
-            const existingChat = chatData.find(c => c.name === chatName);
+            const existingChat = chatData.find(c => c.id === chat.id);
 
             if (existingChat) {
                 // Если чат существует, обновляем только время последнего сообщения
@@ -101,7 +103,6 @@ async function connectWebSocket() {
             console.error('Ошибка при обработке данных WebSocket:', error);
         }
     });
-
 
     // Обработка закрытия соединения
     socket.addEventListener('close', function () {
