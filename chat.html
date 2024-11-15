@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8" name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://fonts.googleapis.com/css?family=Inter&display=swap" rel="stylesheet"/>
+    <link href="./css/main.css" rel="stylesheet"/>
+    <title>Чат</title></head>
+<body>
+<div class="context-menu" id="context-menu">
+    <button id="short-response-btn">Требуется короткий ответ</button>
+    <button id="full-response-btn">Требуется полный ответ</button>
+</div>
+<div class="chat-container">
+    <div class="top-line">
+        <div class="search-tab">
+            <svg width="90" height="90" viewBox="0 0 90 90" fill="none" xmlns="http://www.w3.org/2000/svg"
+                 class="person-svg">
+                <path fill-rule="evenodd" clip-rule="evenodd"
+                      d="M45 7.5C24.3 7.5 7.5 24.3 7.5 45C7.5 65.7 24.3 82.5 45 82.5C65.7 82.5 82.5 65.7 82.5 45C82.5 24.3 65.7 7.5 45 7.5ZM26.5125 68.55C28.125 65.175 37.95 61.875 45 61.875C52.05 61.875 61.9125 65.175 63.4875 68.55C58.3875 72.6 51.975 75 45 75C38.025 75 31.6125 72.6 26.5125 68.55ZM45 54.375C50.475 54.375 63.4875 56.5875 68.85 63.1125C72.675 58.0875 75 51.825 75 45C75 28.4625 61.5375 15 45 15C28.4625 15 15 28.4625 15 45C15 51.825 17.325 58.0875 21.15 63.1125C26.5125 56.5875 39.525 54.375 45 54.375ZM45 22.5C37.725 22.5 31.875 28.35 31.875 35.625C31.875 42.9 37.725 48.75 45 48.75C52.275 48.75 58.125 42.9 58.125 35.625C58.125 28.35 52.275 22.5 45 22.5ZM39.375 35.625C39.375 38.7375 41.8875 41.25 45 41.25C48.1125 41.25 50.625 38.7375 50.625 35.625C50.625 32.5125 48.1125 30 45 30C41.8875 30 39.375 32.5125 39.375 35.625Z"
+                      fill="#00ADEF"/>
+            </svg>
+            <input type="text" value="" class="search-input" placeholder="Поиск">
+        </div>
+        <div class="chat-name">Иванов Иван Иванович 932428</div>
+    </div>
+    <div class="mid-line">
+        <div class="chat-list">
+            <ul></ul>
+        </div>
+        <div class="chat-box">
+            <ul></ul>
+        </div>
+    </div>
+    <div class="bottom-line">
+        <div class="group-mailing">
+            <button class="group-mailing-btn">Написать группе</button>
+        </div>
+        <div class="message-container">
+            <input class="message" type="text" required placeholder="Сообщение">
+            <svg width="80" height="80" class="send-message-btn" viewBox="0 0 80 80" fill="none"
+                 xmlns="http://www.w3.org/2000/svg">
+                <path d="M73.0525 40C73.0525 21.8925 58.375 7.21753 40.27 7.21753C22.165 7.21753 7.48755 21.8925 7.48755 40C7.48755 58.105 22.165 72.7825 40.27 72.7825C58.375 72.7825 73.0525 58.105 73.0525 40ZM10.1125 40C10.1125 23.37 23.6425 9.84003 40.2725 9.84003C56.9025 9.84003 70.4325 23.37 70.4325 40C70.4325 56.63 56.905 70.16 40.2725 70.16C23.6425 70.16 10.1125 56.63 10.1125 40Z"
+                      fill="#00ADEF"/>
+                <path d="M54.365 38.01L56.22 36.155L40.2725 20.2075L24.3275 36.155L26.1825 38.01L38.9625 25.23V57.0475H41.585V25.23L54.365 38.01Z"
+                      fill="#00ADEF"/>
+            </svg>
+        </div>
+    </div>
+</div>
+<div class="popup" id="popup">
+    <div class="popup-content">
+        <span class="close-btn" id="close-btn">&times;</span>
+        <input class="group-mailing-list" placeholder="Группы" pattern="^[0-9]+(,[0-9]+)*$">
+        <textarea class="group-mailing-text" placeholder="Сообщение"></textarea>
+        <button class="group-mailing-submit">Отправить</button>
+    </div>
+</div>
+<script src="scripts/chat-list.js"></script>
+<script src="scripts/send-message.js"></script>
+<script src="scripts/popup.js"></script>
+<script src="scripts/chat-list-update.js"></script>
+<script src="scripts/chat-list-search.js"></script>
+
+</body>
+</html>
